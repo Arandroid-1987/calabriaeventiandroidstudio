@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">Eventi in Calabria</string>
+    <string name="menu_settings">Impostazioni</string>
+    <string name="title_activity_main_screen">Eventi in Calabria</string>
+    <string name="defaultString">Ciao</string>
+    <string name="seleziona_provincia">Provincia:</string>
+    <string name="cosenza">Cosenza</string>
+    <string name="catanzaro">Catanzaro</string>
+    <string name="crotone">Crotone</string>
+    <string name="vibo_valentia">Vibo Valentia</string>
+    <string name="reggio_calabria">Reggio Calabria</string>
+    <string name="condividi">Condividi</string>
+    <string name="feed_eventi">http://calabria.jblasa.com/eventi-in-calabria.htm</string>
+    <string name="feed_eventi_cosenza">http://calabria.jblasa.com/eventi-a-cosenza.htm</string>
+    <string name="feed_eventi_catanzaro">http://calabria.jblasa.com/eventi-a-catanzaro.htm</string>
+    <string name="feed_eventi_crotone">http://calabria.jblasa.com/eventi-a-crotone.htm</string>
+    <string name="feed_eventi_vibo_valentia">http://calabria.jblasa.com/eventi-a-vibo-valentia.htm</string>
+    <string name="feed_eventi_reggio_calabria">http://calabria.jblasa.com/eventi-a-reggio-calabria.htm</string>
+    <string name="oggi">Oggi</string>
+    <string name="eventi_regione">Eventi Regione</string>
+    <string name="preferiti">Preferiti</string>
+    <string name="action_search">Cerca</string>
+</resources>

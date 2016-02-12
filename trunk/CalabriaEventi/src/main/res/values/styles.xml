@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <style name="TransparentListView" parent="@android:style/Widget.ListView">
+        <item name="android:cacheColorHint">@android:color/transparent</item>
+    </style>
+
+    <style name="TransparentExpandableListView" parent="@android:style/Widget.ExpandableListView">
+        <item name="android:cacheColorHint">@android:color/transparent</item>
+    </style>
+
+    <style name="NomeEvento">
+        <item name="android:textSize">16sp</item>
+        <item name="android:textColor">@color/NomeEvento</item>
+        <item name="android:textStyle">bold</item>
+    </style>
+    
+    <style name="DataEvento">
+        <item name="android:textSize">12sp</item>
+        <item name="android:textColor">@color/DataEvento</item>
+        <item name="android:textStyle">normal</item>
+    </style>
+    
+    <style name="LuogoEvento">
+        <item name="android:textSize">15sp</item>
+        <item name="android:textColor">@color/LuogoEvento</item>
+        <item name="android:textStyle">bold</item>
+    </style>
+    
+    <style name="HomeEvento">
+        <item name="android:textSize">13sp</item>
+        <item name="android:textColor">@color/HomeEvento</item>
+        <item name="android:textStyle">normal</item>
+    </style>
+
+</resources>

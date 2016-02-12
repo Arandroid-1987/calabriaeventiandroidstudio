@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <color name="NiceButtonStartColor">#0C3CD9</color>
+    <color name="NiceButtonEndColor">#08057D</color>
+    <color name="NiceButtonDisabledStartColor">#565051</color>
+    <color name="NiceButtonDisabledEndColor">#736F6E</color>
+    <color name="NiceButtonBorderColor">#FFCC01</color>
+    <color name="Trasparente">#66FFFFFF</color>
+    <color name="Sfondo">#EBEBEB</color>
+    <color name="SfondoChiaro">#FEFEFE</color>
+    <color name="NomeEvento">#000000</color>
+    <color name="DataEvento">#8B8B76</color>
+    <color name="LuogoEvento">#FF0000</color>
+    <color name="HomeEvento">#000000</color>
+    <color name="overlayColor">#66848481</color>
+    <color name="white">#FFFFFF</color>
+    <color name="orange">#FFC107</color>
+    <color name="orange_darker">#c79705</color>
+    <color name="endColor">#993D3D29</color>
+    <color name="centerColor">#33848481</color>
+    <color name="startColor">#00A4A4A4</color>
+	<color name="black">#000000</color>
+</resources>
