@@ -69,7 +69,11 @@ public class JBlasaParser {
 
 								Evento evento = new Evento();
 
-								if (img == null || img.get(0) == null) {
+								if(img == null || img.size() == 0 || img.get(0) == null){
+                                    img = row.select("span.ev_ftImg");
+                                }
+
+								if (img == null || img.size() == 0 || img.get(0) == null) {
 									evento.setImageUrl("");
 								} else {
 									String urlImg = img.get(0).attr("style");
