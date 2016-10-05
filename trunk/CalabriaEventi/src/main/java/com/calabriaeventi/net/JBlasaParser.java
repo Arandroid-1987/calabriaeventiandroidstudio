@@ -47,20 +47,15 @@ public class JBlasaParser {
 //					for (Element row : righe) {
 
 						if (row != null) {
-
-							Elements titoloCorrente = row
-									.select("span.evcal_event_title");
-
-							if (titoloCorrente != null
-									&& titoloCorrente.size() > 0) {
-
+							Elements titoloCorrente = row.select("span.evcal_event_title");
+							if (titoloCorrente != null && titoloCorrente.size() > 0) {
 								Elements img = row.select("div.evcal_evdata_img");
 
-								Element dataElement = row.select("em.evo_date")
-										.first();
-
-								String data = dataElement.text();
-
+								String data = "";
+								Element dataElement = row.select("em.evo_date").first();
+								if(dataElement!=null){
+									data = dataElement.text();
+								}
 								// LUOGHI E CONTENUTO
 								Elements luogoElement = row
 										.select("span.evcal_event_subtitle");
@@ -93,24 +88,18 @@ public class JBlasaParser {
 
 								evento.setNome(titolo);
 								evento.setData(data);
-
 								evento.setLuogo(luogo);
-
 								String descrizione = descrizioneElement.text();
 //								descrizione = descrizione.substring(40);
 								evento.setDescrizione(descrizione);
 								k++;
 								List<Date> date = DateUtils.getDatas(data);
 								evento.setDate(date);
-
 								eventi.add(evento);
-
 							}
-
 						}
 					}
 					gs.setK(k);
-
 				}
 			}
 
