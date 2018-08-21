@@ -5,6 +5,7 @@ import com.calabriaeventi.model.Evento;
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.LinkedList;
@@ -19,7 +20,7 @@ public class DateUtils {
     private static void setDates(Evento evento, String format) {
         String startDate = evento.getDataInizio();
         String endDate = evento.getDataFine();
-        List<Date> date;
+        ArrayList<Date> date;
         try {
             startDate = startDate.toLowerCase(Locale.ITALIAN).trim();
             endDate = endDate.toLowerCase(Locale.ITALIAN).trim();
@@ -62,8 +63,8 @@ public class DateUtils {
         setDates(evento, DATE_FORMAT_JBLASA);
     }
 
-    private static List<Date> getDatasBetween(String firstDate, String lastDate) throws ParseException {
-        List<Date> date = new LinkedList<>();
+    private static ArrayList<Date> getDatasBetween(String firstDate, String lastDate) throws ParseException {
+        ArrayList<Date> date = new ArrayList<>();
         SimpleDateFormat sdf = new SimpleDateFormat(DATE_FORMAT_JBLASA_WITH_YEAR, Locale.ITALIAN);
         Date first = sdf.parse(firstDate);
         Date last = sdf.parse(lastDate);
@@ -78,7 +79,4 @@ public class DateUtils {
         return date;
     }
 
-    public static void setDatesFromDb(Evento e) {
-        setDates(e, DATE_FORMAT_PRINT);
-    }
 }

@@ -4,6 +4,8 @@ import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
+import android.support.v4.app.ActivityOptionsCompat;
+import android.support.v4.util.Pair;
 import android.support.v7.widget.RecyclerView;
 import android.view.MenuItem;
 import android.view.View;
@@ -12,6 +14,7 @@ import android.widget.PopupMenu;
 import android.widget.TextView;
 
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
+import com.calabriaeventi.EventDetailActivity;
 import com.calabriaeventi.R;
 import com.calabriaeventi.glide.GlideApp;
 import com.calabriaeventi.io.AsyncCallback;
@@ -33,11 +36,9 @@ public class EventoViewHolder extends RecyclerView.ViewHolder implements View.On
     private ImageView preferiti;
     private View actionMore;
 
-    private Context context;
+    private Activity context;
     private Evento evento;
 
-    private final static int EVENTO_NON_PREFERITO = 0;
-    private final static int EVENTO_PREFERITO = 1;
     private SharedPreferencesManager sharedPreferencesManager;
 
     public EventoViewHolder(View itemView) {
@@ -83,10 +84,8 @@ public class EventoViewHolder extends RecyclerView.ViewHolder implements View.On
 
         if (sharedPreferencesManager.isFavorite(evento)) {
             this.preferiti.setImageResource(R.drawable.baseline_favorite_black_48);
-            this.preferiti.setTag(EVENTO_PREFERITO);
         } else {
             this.preferiti.setImageResource(R.drawable.baseline_favorite_border_black_48);
-            this.preferiti.setTag(EVENTO_NON_PREFERITO);
         }
 
         this.preferiti.setOnClickListener(this);
@@ -124,10 +123,22 @@ public class EventoViewHolder extends RecyclerView.ViewHolder implements View.On
         });
     }
 
+    @SuppressWarnings("unchecked")
     @Override
     public void onClick(View view) {
         if (view.equals(itemView)) {
-            // TODO: detail activity
+            Intent intent = new Intent(context, EventDetailActivity.class);
+            intent.putExtra(EventDetailActivity.EVENT_EXTRA, evento);
+
+            if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.LOLLIPOP) {
+
+                Pair<View, String> pair1 = Pair.create((View) immagine, immagine.getTransitionName());
+
+                ActivityOptionsCompat options = ActivityOptionsCompat.makeSceneTransitionAnimation(context, pair1);
+                context.startActivity(intent, options.toBundle());
+            }else{
+                context.startActivity(intent);
+            }
         } else {
             int id = view.getId();
             switch (id) {
@@ -138,14 +149,12 @@ public class EventoViewHolder extends RecyclerView.ViewHolder implements View.On
                     popupMenu.show();
                     break;
                 case R.id.action_favorite:
-                    if (EventoViewHolder.this.preferiti.getTag() == null || EventoViewHolder.this.preferiti.getTag().equals(EVENTO_NON_PREFERITO)) {
+                    if (!sharedPreferencesManager.isFavorite(evento)) {
                         sharedPreferencesManager.storeFavorite(evento);
-                        EventoViewHolder.this.preferiti.setImageResource(R.drawable.baseline_favorite_black_48);
-                        EventoViewHolder.this.preferiti.setTag(EVENTO_PREFERITO);
+                        preferiti.setImageResource(R.drawable.baseline_favorite_black_48);
                     } else {
                         sharedPreferencesManager.deleteFavorite(evento);
-                        EventoViewHolder.this.preferiti.setImageResource(R.drawable.baseline_favorite_border_black_48);
-                        EventoViewHolder.this.preferiti.setTag(EVENTO_NON_PREFERITO);
+                        preferiti.setImageResource(R.drawable.baseline_favorite_border_black_48);
                     }
                     break;
                 case R.id.eventoLuogo:
@@ -175,11 +184,9 @@ public class EventoViewHolder extends RecyclerView.ViewHolder implements View.On
     @Override
     public void update(Observable observable, Object o) {
         if (sharedPreferencesManager.isFavorite(evento)) {
-            this.preferiti.setImageResource(R.drawable.baseline_favorite_black_48);
-            this.preferiti.setTag(EVENTO_PREFERITO);
+            preferiti.setImageResource(R.drawable.baseline_favorite_black_48);
         } else {
-            this.preferiti.setImageResource(R.drawable.baseline_favorite_border_black_48);
-            this.preferiti.setTag(EVENTO_NON_PREFERITO);
+            preferiti.setImageResource(R.drawable.baseline_favorite_border_black_48);
         }
     }
 }

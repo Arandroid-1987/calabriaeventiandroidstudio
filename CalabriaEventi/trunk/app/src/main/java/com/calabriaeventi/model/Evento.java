@@ -1,6 +1,7 @@
 package com.calabriaeventi.model;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -15,7 +16,7 @@ public class Evento implements Serializable {
     private String luogo;
     private String descrizione;
     private String imageUrl;
-    private List<Date> date;
+    private ArrayList<Date> date;
     private String meteo;
 
     public String getImageUrl() {
@@ -80,11 +81,11 @@ public class Evento implements Serializable {
         return descrizione;
     }
 
-    public List<Date> getDate() {
+    public ArrayList<Date> getDate() {
         return date;
     }
 
-    public void setDate(List<Date> date) {
+    public void setDate(ArrayList<Date> date) {
         this.date = date;
     }
 
