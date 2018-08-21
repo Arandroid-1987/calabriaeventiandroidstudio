@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">Eventi in Calabria</string>
+    <string name="menu_settings">Impostazioni</string>
+    <string name="title_activity_main_screen">Eventi in Calabria</string>
+    <string name="defaultString">Ciao</string>
+    <string name="condividi">Condividi</string>
+    <string name="feed_eventi">https://calabria.jblasa.com/turismo/eventi-in-calabria/</string>
+    <string name="feed_eventi_cosenza">https://calabria.jblasa.com/turismo/eventi-a-cosenza/</string>
+    <string name="feed_eventi_catanzaro">https://calabria.jblasa.com/turismo/eventi-a-catanzaro/</string>
+    <string name="feed_eventi_crotone">https://calabria.jblasa.com/turismo/eventi-a-crotone/</string>
+    <string name="feed_eventi_vibo_valentia">https://calabria.jblasa.com/turismo/eventi-a-vibo-valentia/</string>
+    <string name="feed_eventi_reggio_calabria">https://calabria.jblasa.com/turismo/eventi-a-reggio-calabria/</string>
+    <string name="oggi">Oggi</string>
+    <string name="eventi_regione">Eventi Regione</string>
+    <string name="preferiti">Preferiti</string>
+    <string name="action_search">Cerca</string>
+    <string name="searching">Caricamento in corso…</string>
+    <string name="data_da_a">Da %1$s a %2$s</string>
+    <string name="preference_file_key" translatable="false">com.calabriaeventi.PREFERENCE_FILE_KEY</string>
+    <string name="aggiungi_al_calendario">Aggiungi al Calendario</string>
+</resources>
