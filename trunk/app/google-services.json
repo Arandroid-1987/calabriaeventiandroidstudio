@@ -1,0 +1,102 @@
+{
+  "project_info": {
+    "project_number": "455975297556",
+    "firebase_url": "https://bilanciopersonale.firebaseio.com",
+    "project_id": "bilanciopersonale",
+    "storage_bucket": "bilanciopersonale.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:455975297556:android:045e69b98d463cfb",
+        "android_client_info": {
+          "package_name": "com.arandroid.bilanciopersonale"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "455975297556-rh7s61j7bljbsm2p0fbop8i56qk7cmfj.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.arandroid.bilanciopersonale",
+            "certificate_hash": "5805c077e688d7b6330780569541c7371e70833f"
+          }
+        },
+        {
+          "client_id": "455975297556-ms7f0scgden8uoha28anf5ugj0qh9vm9.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.arandroid.bilanciopersonale",
+            "certificate_hash": "ef7b5c4489d3911010c2feff26261922c39a54c3"
+          }
+        },
+        {
+          "client_id": "455975297556-15i2ssi6vjpk4kt3gtp6acthqsb4gcf5.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.arandroid.bilanciopersonale",
+            "certificate_hash": "bd784309011d1de688f24b2f28d8690852e66aed"
+          }
+        },
+        {
+          "client_id": "455975297556-ih9cqdbgnvmmog2aueht384pi25ibh84.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyD1Yg_jS5PU7uxUF-WJzTa5j5I5VznjOwU"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "455975297556-ih9cqdbgnvmmog2aueht384pi25ibh84.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:455975297556:android:9134c2a2221d3681",
+        "android_client_info": {
+          "package_name": "com.calabriaeventi"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "455975297556-ih9cqdbgnvmmog2aueht384pi25ibh84.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyD1Yg_jS5PU7uxUF-WJzTa5j5I5VznjOwU"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
