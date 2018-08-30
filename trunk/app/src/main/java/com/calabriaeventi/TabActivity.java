@@ -32,11 +32,6 @@ public class TabActivity extends AppCompatActivity {
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-        TypedValue colorAccentValue = new TypedValue();
-        getTheme().resolveAttribute(R.attr.colorAccent, colorAccentValue, true);
-
-        toolbar.setTitleTextColor(colorAccentValue.data);
-
         ViewPager viewPager = findViewById(R.id.container);
         SectionsPagerAdapter viewPagerAdapter = new SectionsPagerAdapter(getSupportFragmentManager());
         viewPager.setAdapter(viewPagerAdapter);

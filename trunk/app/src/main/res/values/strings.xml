@@ -111,4 +111,5 @@
     </string>
     <string name="transition_image" translatable="false">transition_image</string>
     <string name="transition_favorite" translatable="false">transition_favorite</string>
+    <string name="apri_mappa">Mappa</string>
 </resources>

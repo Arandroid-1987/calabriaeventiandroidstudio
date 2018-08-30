@@ -11,7 +11,7 @@ import java.util.Date;
 import java.util.Locale;
 
 public class DateUtils {
-    private final static String DATE_FORMAT_PRINT = "EEEE dd MMMM yyyy";
+    private final static String DATE_FORMAT_PRINT = "EEEE dd MMMM yyyy - HH:mm";
 
     public static void setDates(Evento evento) {
         String startDate = evento.getStartDate();
