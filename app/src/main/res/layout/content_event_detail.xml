@@ -2,6 +2,7 @@
 <android.support.v4.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nested_scroll_view"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
@@ -11,7 +12,9 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="@dimen/text_margin"
-        android:orientation="vertical">
+        android:descendantFocusability="blocksDescendants"
+        android:orientation="vertical"
+        android:paddingTop="@dimen/activity_vertical_margin">
 
         <TextView
             android:id="@+id/event.title"
@@ -22,60 +25,83 @@
             android:layout_alignParentStart="true"
             tools:text="Sagra del Tartufo di Pizzo" />
 
-        <LinearLayout
+        <RelativeLayout
             android:id="@+id/event.location.layout"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:gravity="center_vertical"
             android:layout_below="@id/event.title"
-            android:layout_marginTop="10dp">
+            android:gravity="center_vertical"
+            android:orientation="horizontal">
 
             <ImageView
                 android:id="@+id/event.location.pin"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginEnd="2dp"
-                android:layout_marginRight="2dp"
+                android:layout_width="18dp"
+                android:layout_height="18dp"
+                android:layout_centerVertical="true"
+                android:layout_marginEnd="5dp"
+                android:layout_marginRight="5dp"
                 android:contentDescription="@string/defaultString"
-                android:src="@drawable/baseline_place_black_24"/>
+                android:src="@drawable/baseline_place_black_24" />
 
             <TextView
                 android:id="@+id/event.location"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:paddingTop="15dp"
+                android:layout_toEndOf="@+id/event.location.pin"
+                android:layout_toRightOf="@+id/event.location.pin"
                 tools:text="Cosenza" />
 
-        </LinearLayout>
+            <Button
+                android:id="@+id/event.location.open.map"
+                style="?buttonBarButtonStyle"
+                android:layout_width="wrap_content"
+                android:layout_gravity="end"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="11dp"
+                android:layout_marginStart="11dp"
+                android:text="@string/apri_mappa"
+                android:layout_below="@id/event.location"/>
+
+        </RelativeLayout>
 
         <RelativeLayout
             android:id="@+id/event.date.layout"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:orientation="horizontal"
             android:layout_below="@id/event.location.layout"
-            android:layout_marginTop="10dp"
             android:layout_marginLeft="2dp"
-            android:layout_marginStart="2dp">
+            android:layout_marginStart="2dp"
+            android:orientation="horizontal">
 
             <ImageView
                 android:id="@+id/event.date.clock"
                 android:layout_width="18dp"
                 android:layout_height="18dp"
-                android:layout_marginEnd="2dp"
-                android:layout_marginRight="2dp"
+                android:layout_marginEnd="5dp"
+                android:layout_marginRight="5dp"
+                android:layout_centerVertical="true"
                 android:contentDescription="@string/defaultString"
-                android:src="@drawable/baseline_timer_black_18"/>
+                android:src="@drawable/baseline_timer_black_18" />
 
             <TextView
                 android:id="@+id/event.date"
-                style="@style/Base.TextAppearance.AppCompat.Caption"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_centerVertical="true"
-                tools:text="18 Luglio 2018"
+                android:paddingTop="15dp"
+                android:layout_toEndOf="@id/event.date.clock"
                 android:layout_toRightOf="@id/event.date.clock"
-                android:layout_toEndOf="@id/event.date.clock"/>
+                tools:text="Dal 18 Luglio 2018 - 09:00 al 18 Luglio 2018 - 17:00" />
+
+            <Button
+                android:id="@+id/event.date.add.calendar"
+                style="?buttonBarButtonStyle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="11dp"
+                android:layout_marginStart="11dp"
+                android:layout_below="@id/event.date"
+                android:text="@string/aggiungi_al_calendario" />
 
         </RelativeLayout>
 
@@ -84,7 +110,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_below="@id/event.date.layout"
-            android:layout_marginTop="20dp"
+            android:textIsSelectable="true"
             tools:text="@string/large_text" />
 
     </RelativeLayout>

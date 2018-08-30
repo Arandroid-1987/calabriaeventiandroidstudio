@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
+import android.os.Handler;
 import android.support.design.widget.AppBarLayout;
 import android.support.design.widget.CollapsingToolbarLayout;
 import android.support.design.widget.FloatingActionButton;
@@ -15,6 +16,7 @@ import android.support.v4.util.Pair;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.text.util.Linkify;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
@@ -67,7 +69,7 @@ public class EventDetailActivity extends AppCompatActivity implements View.OnCli
                 if (scrollRange + verticalOffset == 0) {
                     toolbarLayout.setTitle(evento.getTitle());
                     isShow = true;
-                } else if(isShow) {
+                } else if (isShow) {
                     toolbarLayout.setTitle(" ");
                     isShow = false;
                 }
@@ -94,6 +96,7 @@ public class EventDetailActivity extends AppCompatActivity implements View.OnCli
 
         TextView eventDescription = findViewById(R.id.event_description);
         eventDescription.setText(evento.getDescription());
+        Linkify.addLinks(eventDescription, Linkify.ALL);
 
         GlideApp.with(this).load(evento.getImgUrl()).placeholder(R.drawable.immm)
                 .diskCacheStrategy(DiskCacheStrategy.ALL)
@@ -101,12 +104,14 @@ public class EventDetailActivity extends AppCompatActivity implements View.OnCli
 
         sharedPreferencesManager = SharedPreferencesManager.getInstance(this);
         if (sharedPreferencesManager.isFavorite(evento)) {
-            fab.setImageResource(R.drawable.baseline_favorite_black_48);
+            fab.setImageResource(R.drawable.baseline_favorite_white_48);
         } else {
-            fab.setImageResource(R.drawable.baseline_favorite_border_black_48);
+            fab.setImageResource(R.drawable.baseline_favorite_border_white_48);
         }
 
         fab.setOnClickListener(this);
+        findViewById(R.id.event_date_add_calendar).setOnClickListener(this);
+        findViewById(R.id.event_location_open_map).setOnClickListener(this);
     }
 
     @SuppressWarnings("unchecked")
@@ -118,10 +123,10 @@ public class EventDetailActivity extends AppCompatActivity implements View.OnCli
             case R.id.fab:
                 if (!sharedPreferencesManager.isFavorite(evento)) {
                     sharedPreferencesManager.storeFavorite(evento);
-                    fab.setImageResource(R.drawable.baseline_favorite_black_48);
+                    fab.setImageResource(R.drawable.baseline_favorite_white_48);
                 } else {
                     sharedPreferencesManager.deleteFavorite(evento);
-                    fab.setImageResource(R.drawable.baseline_favorite_border_black_48);
+                    fab.setImageResource(R.drawable.baseline_favorite_border_white_48);
                 }
                 break;
             case R.id.eventoImmagine:
@@ -134,16 +139,27 @@ public class EventDetailActivity extends AppCompatActivity implements View.OnCli
 
                     ActivityOptionsCompat options = ActivityOptionsCompat.makeSceneTransitionAnimation(this, pair1);
                     startActivity(intent, options.toBundle());
-                }else{
+                } else {
                     startActivity(intent);
                 }
                 break;
             case R.id.event_location_layout:
-                String url = "https://www.google.it/maps/place/" + evento.getPlace();
-                intent = new Intent(Intent.ACTION_VIEW, Uri.parse(url));
-                startActivity(intent);
+                openMap();
+                break;
+            case R.id.event_date_add_calendar:
+                ActionCommon.addToCalendar(evento, this);
+                break;
+            case R.id.event_location_open_map:
+                openMap();
                 break;
         }
+    }
+
+    private void openMap() {
+        Intent intent;
+        String url = "https://www.google.it/maps/place/" + evento.getPlace();
+        intent = new Intent(Intent.ACTION_VIEW, Uri.parse(url));
+        startActivity(intent);
     }
 
     @Override

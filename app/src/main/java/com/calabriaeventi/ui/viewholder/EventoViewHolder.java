@@ -108,8 +108,7 @@ public class EventoViewHolder extends RecyclerView.ViewHolder implements View.On
         itemView.setOnClickListener(this);
 
         CardView.LayoutParams params = (CardView.LayoutParams) this.immagine.getLayoutParams();
-        int random = (int) (Math.random() * 5);
-        if (random == 0) {
+        if (position % 5 == 0) {
             params.height = ActionCommon.pixel(context, 250);
         } else {
             params.height = ActionCommon.pixel(context, 150);
