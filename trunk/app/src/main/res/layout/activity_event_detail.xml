@@ -49,7 +49,8 @@
         android:layout_height="wrap_content"
         android:layout_margin="@dimen/fab_margin"
         app:layout_anchor="@id/app_bar"
-        app:layout_anchorGravity="bottom|end"
+        app:layout_anchorGravity="bottom|center"
+        app:fabSize="normal"
         app:srcCompat="@drawable/baseline_favorite_border_white_48" />
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

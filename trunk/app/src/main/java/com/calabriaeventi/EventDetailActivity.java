@@ -5,17 +5,6 @@ import android.content.Intent;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
-
-import com.google.android.material.appbar.AppBarLayout;
-import com.google.android.material.appbar.CollapsingToolbarLayout;
-import com.google.android.material.floatingactionbutton.FloatingActionButton;
-import androidx.core.app.ActivityOptionsCompat;
-import androidx.core.app.NavUtils;
-import androidx.core.app.TaskStackBuilder;
-import androidx.core.util.Pair;
-import androidx.appcompat.app.ActionBar;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.widget.Toolbar;
 import android.text.util.Linkify;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -29,6 +18,17 @@ import com.calabriaeventi.glide.GlideApp;
 import com.calabriaeventi.io.SharedPreferencesManager;
 import com.calabriaeventi.model.Evento;
 import com.calabriaeventi.utils.ActionCommon;
+import com.google.android.material.appbar.AppBarLayout;
+import com.google.android.material.appbar.CollapsingToolbarLayout;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
+
+import androidx.appcompat.app.ActionBar;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
+import androidx.core.app.ActivityOptionsCompat;
+import androidx.core.app.NavUtils;
+import androidx.core.app.TaskStackBuilder;
+import androidx.core.util.Pair;
 
 public class EventDetailActivity extends AppCompatActivity implements View.OnClickListener {
     public static final String EVENT_EXTRA = "EVENT_EXTRA";
@@ -202,11 +202,8 @@ public class EventDetailActivity extends AppCompatActivity implements View.OnCli
                 }
                 res = true;
                 break;
-            case R.id.action_share:
-                ActionCommon.share(evento, this);
-                break;
-            case R.id.action_add_calendar:
-                ActionCommon.addToCalendar(evento, this);
+            case R.id.action_more:
+                EventDetailBottomSheet.newInstance(evento).show(getSupportFragmentManager(), "dialog");
                 break;
         }
         return res;
