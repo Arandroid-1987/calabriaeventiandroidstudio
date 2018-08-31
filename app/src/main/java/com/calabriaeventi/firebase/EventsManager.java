@@ -1,6 +1,6 @@
 package com.calabriaeventi.firebase;
 
-import android.support.annotation.NonNull;
+import androidx.annotation.NonNull;
 
 import com.calabriaeventi.io.AsyncCallback;
 import com.calabriaeventi.model.Evento;

@@ -1,7 +1,7 @@
 package com.calabriaeventi.utils;
 
 import android.os.Bundle;
-import android.support.v4.app.Fragment;
+import androidx.fragment.app.Fragment;
 
 import com.calabriaeventi.EventiFragment;
 import com.calabriaeventi.core.GlobalState;
