@@ -3,6 +3,8 @@ package com.calabriaeventi.ui.viewholder;
 import android.app.Activity;
 import android.content.Intent;
 import android.net.Uri;
+
+import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityOptionsCompat;
 import androidx.core.util.Pair;
 import androidx.cardview.widget.CardView;
@@ -15,6 +17,7 @@ import android.widget.TextView;
 
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.calabriaeventi.EventDetailActivity;
+import com.calabriaeventi.EventDetailBottomSheet;
 import com.calabriaeventi.R;
 import com.calabriaeventi.glide.GlideApp;
 import com.calabriaeventi.io.AsyncCallback;
@@ -27,7 +30,7 @@ import java.util.Observable;
 import java.util.Observer;
 import java.util.StringTokenizer;
 
-public class EventoViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener, PopupMenu.OnMenuItemClickListener, Observer {
+public class EventoViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener, Observer {
     private TextView nome;
     private TextView luogo;
     private TextView data;
@@ -36,7 +39,7 @@ public class EventoViewHolder extends RecyclerView.ViewHolder implements View.On
     private ImageView preferiti;
     private View actionMore;
 
-    private Activity context;
+    private AppCompatActivity context;
     private Evento evento;
 
     private SharedPreferencesManager sharedPreferencesManager;
@@ -55,7 +58,7 @@ public class EventoViewHolder extends RecyclerView.ViewHolder implements View.On
 
     public void bindToModel(final Evento evento, final Activity context, final int position) {
         this.evento = evento;
-        this.context = context;
+        this.context = (AppCompatActivity) context;
         sharedPreferencesManager = SharedPreferencesManager.getInstance(context);
         sharedPreferencesManager.getObservable().addObserver(this);
 
@@ -151,10 +154,7 @@ public class EventoViewHolder extends RecyclerView.ViewHolder implements View.On
             int id = view.getId();
             switch (id) {
                 case R.id.action_more:
-                    PopupMenu popupMenu = new PopupMenu(context, actionMore);
-                    popupMenu.setOnMenuItemClickListener(this);
-                    popupMenu.getMenuInflater().inflate(R.menu.item_evento, popupMenu.getMenu());
-                    popupMenu.show();
+                    EventDetailBottomSheet.newInstance(evento).show(context.getSupportFragmentManager(), "dialog");
                     break;
                 case R.id.action_favorite:
                     if (!sharedPreferencesManager.isFavorite(evento)) {
@@ -173,20 +173,6 @@ public class EventoViewHolder extends RecyclerView.ViewHolder implements View.On
                     break;
             }
         }
-    }
-
-    @Override
-    public boolean onMenuItemClick(MenuItem menuItem) {
-        int id = menuItem.getItemId();
-        switch (id) {
-            case R.id.action_share:
-                ActionCommon.share(evento, context);
-                break;
-            case R.id.action_add_calendar:
-                ActionCommon.addToCalendar(evento, context);
-                break;
-        }
-        return false;
     }
 
     @Override
