@@ -1,19 +1,11 @@
 package com.calabriaeventi.core;
 
 import android.app.Application;
-import android.support.multidex.MultiDex;
-import android.util.SparseArray;
+import androidx.multidex.MultiDex;
 
 import com.calabriaeventi.R;
 import com.calabriaeventi.io.SharedPreferencesManager;
-import com.calabriaeventi.model.Evento;
 import com.calabriaeventi.model.Provincia;
-import com.calabriaeventi.utils.Constants;
-
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.LinkedList;
-import java.util.List;
 
 public class GlobalState extends Application {
     public static Provincia[] province = new Provincia[5];
