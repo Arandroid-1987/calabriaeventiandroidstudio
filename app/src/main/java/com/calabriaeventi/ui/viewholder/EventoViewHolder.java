@@ -3,16 +3,8 @@ package com.calabriaeventi.ui.viewholder;
 import android.app.Activity;
 import android.content.Intent;
 import android.net.Uri;
-
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.app.ActivityOptionsCompat;
-import androidx.core.util.Pair;
-import androidx.cardview.widget.CardView;
-import androidx.recyclerview.widget.RecyclerView;
-import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageView;
-import android.widget.PopupMenu;
 import android.widget.TextView;
 
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
@@ -29,6 +21,12 @@ import java.util.Locale;
 import java.util.Observable;
 import java.util.Observer;
 import java.util.StringTokenizer;
+
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.cardview.widget.CardView;
+import androidx.core.app.ActivityOptionsCompat;
+import androidx.core.util.Pair;
+import androidx.recyclerview.widget.RecyclerView;
 
 public class EventoViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener, Observer {
     private TextView nome;
