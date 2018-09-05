@@ -58,8 +58,8 @@
                 android:layout_width="wrap_content"
                 android:layout_gravity="end"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="11dp"
-                android:layout_marginStart="11dp"
+                android:layout_marginLeft="5dp"
+                android:layout_marginStart="5dp"
                 android:text="@string/apri_mappa"
                 android:layout_below="@id/event.location"/>
 
@@ -98,8 +98,8 @@
                 style="@style/Widget.MaterialComponents.Button.TextButton"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="11dp"
-                android:layout_marginStart="11dp"
+                android:layout_marginLeft="15dp"
+                android:layout_marginStart="15dp"
                 android:layout_below="@id/event.date"
                 android:text="@string/aggiungi_al_calendario" />
 
