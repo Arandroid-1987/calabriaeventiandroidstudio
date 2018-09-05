@@ -60,61 +60,66 @@ public class EventoViewHolder extends RecyclerView.ViewHolder implements View.On
         sharedPreferencesManager = SharedPreferencesManager.getInstance(context);
         sharedPreferencesManager.getObservable().addObserver(this);
 
-        String nome = evento.getTitle().trim();
-        StringTokenizer st = new StringTokenizer(nome);
-        StringBuilder nomeSB = new StringBuilder();
-        while (st.hasMoreTokens()) {
-            String token = st.nextToken().toLowerCase(Locale.getDefault());
-            token = token.substring(0, 1).toUpperCase(Locale.getDefault())
-                    + token.substring(1);
-            nomeSB.append(token).append(" ");
-        }
+        if (evento != null) {
+            String title = evento.getTitle();
+            if (title != null) {
+                String nome = title.trim();
+                StringTokenizer st = new StringTokenizer(nome);
+                StringBuilder nomeSB = new StringBuilder();
+                while (st.hasMoreTokens()) {
+                    String token = st.nextToken().toLowerCase(Locale.getDefault());
+                    token = token.substring(0, 1).toUpperCase(Locale.getDefault())
+                            + token.substring(1);
+                    nomeSB.append(token).append(" ");
+                }
 
-        this.nome.setText(nomeSB.toString());
-        final String luogo = evento.getPlace().replace("Luogo: ", "")
-                .trim();
-        this.luogo.setText(luogo);
-
-        if (!evento.getStartDate().equals(evento.getEndDate())) {
-            this.data.setText(context.getString(R.string.data_da_a, evento.getStartDate(), evento.getEndDate()));
-        } else {
-            this.data.setText(evento.getStartDate());
-        }
-
-        this.luogo.setOnClickListener(this);
-
-        if (sharedPreferencesManager.isFavorite(evento)) {
-            this.preferiti.setImageResource(R.drawable.baseline_favorite_black_48);
-        } else {
-            this.preferiti.setImageResource(R.drawable.baseline_favorite_border_black_48);
-        }
-
-        this.preferiti.setOnClickListener(this);
-        this.actionMore.setOnClickListener(this);
-
-        GlideApp.with(context).load(evento.getImgUrl()).placeholder(R.drawable.immm)
-                .diskCacheStrategy(DiskCacheStrategy.ALL)
-                .dontTransform().into(this.immagine);
-
-        this.meteo.setImageDrawable(null);
-        String meteo = evento.getMeteo(new AsyncCallback<String>() {
-            @Override
-            public void callback(String s) {
-                initMeteo(context, s);
+                this.nome.setText(nomeSB.toString());
             }
-        });
+            final String luogo = evento.getPlace().replace("Luogo: ", "")
+                    .trim();
+            this.luogo.setText(luogo);
 
-        initMeteo(context, meteo);
+            if (!evento.getStartDate().equals(evento.getEndDate())) {
+                this.data.setText(context.getString(R.string.data_da_a, evento.getStartDate(), evento.getEndDate()));
+            } else {
+                this.data.setText(evento.getStartDate());
+            }
 
-        itemView.setOnClickListener(this);
+            this.luogo.setOnClickListener(this);
 
-        CardView.LayoutParams params = (CardView.LayoutParams) this.immagine.getLayoutParams();
-        if (position % 5 == 0) {
-            params.height = ActionCommon.pixel(context, 250);
-        } else {
-            params.height = ActionCommon.pixel(context, 150);
+            if (sharedPreferencesManager.isFavorite(evento)) {
+                this.preferiti.setImageResource(R.drawable.baseline_favorite_black_48);
+            } else {
+                this.preferiti.setImageResource(R.drawable.baseline_favorite_border_black_48);
+            }
+
+            this.preferiti.setOnClickListener(this);
+            this.actionMore.setOnClickListener(this);
+
+            GlideApp.with(context).load(evento.getImgUrl()).placeholder(R.drawable.immm)
+                    .diskCacheStrategy(DiskCacheStrategy.ALL)
+                    .dontTransform().into(this.immagine);
+
+            this.meteo.setImageDrawable(null);
+            String meteo = evento.getMeteo(new AsyncCallback<String>() {
+                @Override
+                public void callback(String s) {
+                    initMeteo(context, s);
+                }
+            });
+
+            initMeteo(context, meteo);
+
+            itemView.setOnClickListener(this);
+
+            CardView.LayoutParams params = (CardView.LayoutParams) this.immagine.getLayoutParams();
+            if (position % 5 == 0) {
+                params.height = ActionCommon.pixel(context, 250);
+            } else {
+                params.height = ActionCommon.pixel(context, 150);
+            }
+            this.immagine.setLayoutParams(params);
         }
-        this.immagine.setLayoutParams(params);
     }
 
     private void initMeteo(final Activity context, final String meteo) {
