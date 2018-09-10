@@ -34,16 +34,17 @@ public class MeteoLoader extends AsyncTask<String, Void, Void> {
         Calendar cal = Calendar.getInstance();
         cal.add(Calendar.DAY_OF_YEAR, 7);
         Date nextWeek = cal.getTime();
-        String meteo;
+        String meteo = "";
         if (dat.after(nextWeek)) {
-            meteo = "";
             evento.setMeteo(meteo);
         } else {
-            meteo = new MeteoParser().getMeteo(evento.getPlace(), dat);
-            if (meteo == null) {
-                meteo = "";
+            if (evento.getPlace() != null) {
+                meteo = new MeteoParser().getMeteo(evento.getPlace(), dat);
+                if (meteo == null) {
+                    meteo = "";
+                }
+                evento.setMeteo(meteo);
             }
-            evento.setMeteo(meteo);
         }
         if (asyncCallback != null) {
             asyncCallback.callback(meteo);
