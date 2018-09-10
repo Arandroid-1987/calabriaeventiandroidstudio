@@ -75,14 +75,16 @@ public class EventoViewHolder extends RecyclerView.ViewHolder implements View.On
 
                 this.nome.setText(nomeSB.toString());
             }
-            final String luogo = evento.getPlace().replace("Luogo: ", "")
-                    .trim();
-            this.luogo.setText(luogo);
-
-            if (!evento.getStartDate().equals(evento.getEndDate())) {
-                this.data.setText(context.getString(R.string.data_da_a, evento.getStartDate(), evento.getEndDate()));
-            } else {
-                this.data.setText(evento.getStartDate());
+            if (evento.getPlace() != null) {
+                final String luogo = evento.getPlace().replace("Luogo: ", "").trim();
+                this.luogo.setText(luogo);
+            }
+            if (evento.getStartDate() != null) {
+                if (!evento.getStartDate().equals(evento.getEndDate())) {
+                    this.data.setText(context.getString(R.string.data_da_a, evento.getStartDate(), evento.getEndDate()));
+                } else {
+                    this.data.setText(evento.getStartDate());
+                }
             }
 
             this.luogo.setOnClickListener(this);
@@ -96,9 +98,11 @@ public class EventoViewHolder extends RecyclerView.ViewHolder implements View.On
             this.preferiti.setOnClickListener(this);
             this.actionMore.setOnClickListener(this);
 
-            GlideApp.with(context).load(evento.getImgUrl()).placeholder(R.drawable.immm)
-                    .diskCacheStrategy(DiskCacheStrategy.ALL)
-                    .dontTransform().into(this.immagine);
+            if (evento.getImgUrl() != null) {
+                GlideApp.with(context).load(evento.getImgUrl()).placeholder(R.drawable.immm)
+                        .diskCacheStrategy(DiskCacheStrategy.ALL)
+                        .dontTransform().into(this.immagine);
+            }
 
             this.meteo.setImageDrawable(null);
             String meteo = evento.getMeteo(new AsyncCallback<String>() {
