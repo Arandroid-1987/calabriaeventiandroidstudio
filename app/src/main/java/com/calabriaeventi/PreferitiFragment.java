@@ -67,7 +67,7 @@ public class PreferitiFragment extends Fragment implements Observer {
         return rootView;
     }
 
-    public void reload() {
+    private void reload() {
         events = sharedPreferencesManager.loadFavorites();
         adp = new EventoAdapter(context, R.layout.item_evento, events);
         recyclerView.setAdapter(adp);

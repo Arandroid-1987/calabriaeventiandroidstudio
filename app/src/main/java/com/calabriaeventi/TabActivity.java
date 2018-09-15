@@ -20,8 +20,9 @@ import androidx.appcompat.widget.Toolbar;
 public class TabActivity extends AppCompatActivity {
 
     private final static int HOME = 0;
-    private final static int EVENTI = 1;
-    private final static int PREFERITI = 7;
+    private final static int TOMORROW = 1;
+    private final static int EVENTI = 2;
+    private final static int PREFERITI = 8;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -73,12 +74,14 @@ public class TabActivity extends AppCompatActivity {
             switch (position) {
                 case HOME:
                     return getString(R.string.oggi).toUpperCase(l);
+                case TOMORROW:
+                    return getString(R.string.domani).toUpperCase(l);
                 case EVENTI:
                     return getString(R.string.eventi_regione).toUpperCase(l);
                 case PREFERITI:
                     return getString(R.string.preferiti).toUpperCase(l);
                 default:
-                    return GlobalState.province[position - 2].getNome().toUpperCase(l);
+                    return GlobalState.province[position - 3].getNome().toUpperCase(l);
             }
         }
     }

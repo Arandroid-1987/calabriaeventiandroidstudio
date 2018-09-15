@@ -10,7 +10,9 @@ import java.util.Date;
 import java.util.Locale;
 import java.util.StringTokenizer;
 
-public class Evento implements Serializable, Filterable {
+import androidx.annotation.NonNull;
+
+public class Evento implements Serializable, Filterable, Comparable<Evento> {
     private static final long serialVersionUID = 6891277652233297417L;
     public static final String START_DATE_KEY = "startDate";
     private String title;
@@ -164,5 +166,18 @@ public class Evento implements Serializable, Filterable {
             }
         }
         return compliant;
+    }
+
+    @Override
+    public int compareTo(@NonNull Evento other) {
+        Date myStartDate = new Date();
+        Date otherStartDate = new Date();
+        if(date.size() > 0){
+            myStartDate = date.get(0);
+        }
+        if (other.getDate().size() > 0) {
+            otherStartDate = other.getDate().get(0);
+        }
+        return myStartDate.compareTo(otherStartDate);
     }
 }

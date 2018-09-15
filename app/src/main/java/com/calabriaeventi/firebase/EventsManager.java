@@ -13,6 +13,9 @@ import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QuerySnapshot;
 
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.Date;
 
 public class EventsManager {
@@ -63,6 +66,38 @@ public class EventsManager {
                 }
             }
         }
+        Collections.sort(eventiGiornalieri, new Comparator<Evento>() {
+            @Override
+            public int compare(Evento evento, Evento other) {
+                return - evento.compareTo(other);
+            }
+        });
         return eventiGiornalieri;
+    }
+
+    public static ArrayList<Evento> getEventiDomani(ArrayList<Evento> eventi) {
+        Calendar calendar = Calendar.getInstance();
+        calendar.add(Calendar.DAY_OF_YEAR, 1);
+        Date tomorrowDate = calendar.getTime();
+        String TOMORROW = Constants.CACHE_DATE_FORMATTER.format(tomorrowDate);
+
+        ArrayList<Evento> eventiDomani = new ArrayList<>();
+        for (Evento evento : eventi) {
+            ArrayList<Date> date = evento.getDate();
+            for (Date data : date) {
+                String dateStr = Constants.CACHE_DATE_FORMATTER.format(data);
+                if (dateStr.equals(TOMORROW)) {
+                    eventiDomani.add(evento);
+                    break;
+                }
+            }
+        }
+        Collections.sort(eventiDomani, new Comparator<Evento>() {
+            @Override
+            public int compare(Evento evento, Evento other) {
+                return - evento.compareTo(other);
+            }
+        });
+        return eventiDomani;
     }
 }
