@@ -88,6 +88,8 @@ public class EventiFragment extends Fragment {
                         events.clear();
                         if (provincia.getNome().equals("Home")) {
                             events.addAll(EventsManager.getEventiGiornalieri(ris));
+                        } else if (provincia.getNome().equals("Domani")) {
+                            events.addAll(EventsManager.getEventiDomani(ris));
                         } else {
                             events.addAll(ris);
                             preferencesManager.storeEventi(provincia.getCacheKey(), events);
@@ -102,6 +104,12 @@ public class EventiFragment extends Fragment {
                     ArrayList<Evento> eventiGiornalieri = EventsManager.getEventiGiornalieri(events);
                     events.clear();
                     events.addAll(eventiGiornalieri);
+                    adp.applyFilter("");
+                    adp.notifyDataSetChanged();
+                } else if (provincia.getNome().equals("Domani")) {
+                    ArrayList<Evento> eventiDomani = EventsManager.getEventiDomani(events);
+                    events.clear();
+                    events.addAll(eventiDomani);
                     adp.applyFilter("");
                     adp.notifyDataSetChanged();
                 }

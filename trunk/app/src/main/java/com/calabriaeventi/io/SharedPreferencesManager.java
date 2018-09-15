@@ -2,12 +2,9 @@ package com.calabriaeventi.io;
 
 import android.content.Context;
 import android.content.SharedPreferences;
-import android.database.Cursor;
 
 import com.calabriaeventi.R;
 import com.calabriaeventi.model.Evento;
-import com.calabriaeventi.utils.Constants;
-import com.calabriaeventi.utils.DateUtils;
 import com.calabriaeventi.utils.ObservableImpl;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
@@ -15,9 +12,10 @@ import com.google.gson.reflect.TypeToken;
 
 import java.lang.reflect.Type;
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Date;
 import java.util.HashSet;
-import java.util.LinkedList;
-import java.util.List;
+import java.util.Iterator;
 import java.util.Observable;
 
 public class SharedPreferencesManager {
@@ -93,7 +91,21 @@ public class SharedPreferencesManager {
     }
 
     public ArrayList<Evento> loadFavorites() {
-        return new ArrayList<>(favorites);
+        Iterator<Evento> iterator = favorites.iterator();
+        while (iterator.hasNext()) {
+            Evento favorite = iterator.next();
+            ArrayList<Date> dates = favorite.getDate();
+            if (dates.size() > 0) {
+                Date endDate = dates.get(dates.size() - 1);
+                if (endDate.before(new Date())) {
+                    iterator.remove();
+                }
+            }
+        }
+
+        ArrayList<Evento> result = new ArrayList<>(favorites);
+        Collections.sort(result);
+        return result;
     }
 
     public Observable getObservable() {

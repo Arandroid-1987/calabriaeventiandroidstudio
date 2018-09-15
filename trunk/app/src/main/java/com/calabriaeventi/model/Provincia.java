@@ -39,7 +39,7 @@ public class Provincia implements Serializable {
     }
 
     public String getFirebaseName() {
-        if (nome.equals("Home")) {
+        if (nome.equals("Home") || nome.equals("Domani")) {
             return "regione";
         }
         return nome.toLowerCase().replaceAll(" ", "-");
