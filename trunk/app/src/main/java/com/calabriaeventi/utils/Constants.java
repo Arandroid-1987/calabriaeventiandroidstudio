@@ -9,4 +9,5 @@ public interface Constants {
     SimpleDateFormat CACHE_DATE_FORMATTER = new SimpleDateFormat(CACHE_DATE_FORMAT, Locale.ITALIAN);
     String TODAY = CACHE_DATE_FORMATTER.format(new Date());
     String FIREBASE_DATE_FORMAT = "yyyyMMdd HH:mm:ss";
+    String ADMOB_APP_ID = "ca-app-pub-2997805148414323~7956127298";
 }

@@ -3,10 +3,13 @@ package com.calabriaeventi;
 import java.util.Locale;
 
 import com.calabriaeventi.core.GlobalState;
+import com.calabriaeventi.utils.Constants;
 import com.calabriaeventi.utils.GestoreFeed;
 
 import android.annotation.SuppressLint;
 import android.os.Bundle;
+
+import com.google.android.gms.ads.MobileAds;
 import com.google.android.material.tabs.TabLayout;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
@@ -31,6 +34,8 @@ public class TabActivity extends AppCompatActivity {
 
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+
+        MobileAds.initialize(this, Constants.ADMOB_APP_ID);
 
         ViewPager viewPager = findViewById(R.id.container);
         SectionsPagerAdapter viewPagerAdapter = new SectionsPagerAdapter(getSupportFragmentManager());
