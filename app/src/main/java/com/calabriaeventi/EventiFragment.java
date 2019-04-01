@@ -150,7 +150,7 @@ public class EventiFragment extends Fragment {
         });
     }
 
-    protected void filterEvents(String query) {
+    private void filterEvents(String query) {
         query = query.toLowerCase(Locale.getDefault());
         adp.applyFilter(query);
         adp.notifyDataSetChanged();

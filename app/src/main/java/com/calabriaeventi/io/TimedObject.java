@@ -12,11 +12,11 @@ public class TimedObject<T extends Serializable> implements Serializable {
     private String date;
     private T content;
 
-    public TimedObject() {
+    TimedObject() {
         this.date = Constants.TODAY;
     }
 
-    public TimedObject(T content) {
+    TimedObject(T content) {
         this.date = Constants.TODAY;
         this.content = content;
     }

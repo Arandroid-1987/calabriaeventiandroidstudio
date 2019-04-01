@@ -143,6 +143,7 @@ public class Evento implements Serializable, Filterable, Comparable<Evento> {
     }
 
     @Override
+    @NonNull
     public String toString() {
         return title + "\n" +
                 startDate + "\n" +

@@ -26,9 +26,8 @@ import com.calabriaeventi.ui.EventoAdapter;
 
 public class PreferitiFragment extends Fragment implements Observer {
     private RecyclerView recyclerView;
-    public EventoAdapter adp;
-    public ArrayList<Evento> events;
-    public Evento e;
+    private EventoAdapter adp;
+    private ArrayList<Evento> events;
 
     private Activity context;
     private SharedPreferencesManager sharedPreferencesManager;
@@ -107,7 +106,7 @@ public class PreferitiFragment extends Fragment implements Observer {
         });
     }
 
-    protected void filterEvents(String query) {
+    private void filterEvents(String query) {
         query = query.toLowerCase(Locale.getDefault());
         if (query.trim().length() == 0) {
             events.clear();
