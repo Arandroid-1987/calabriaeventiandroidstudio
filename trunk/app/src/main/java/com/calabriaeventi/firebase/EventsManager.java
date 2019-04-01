@@ -40,7 +40,7 @@ public class EventsManager {
             @Override
             public void onComplete(@NonNull Task<QuerySnapshot> task) {
                 ArrayList<Evento> events = new ArrayList<>();
-                if (task.isSuccessful()) {
+                if (task.isSuccessful() && task.getResult() != null) {
                     for (DocumentSnapshot snapshot : task.getResult().getDocuments()) {
                         Evento evento = snapshot.toObject(Evento.class);
                         if (evento != null) {

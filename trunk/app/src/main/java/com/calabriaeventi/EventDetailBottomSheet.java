@@ -9,6 +9,7 @@ import com.calabriaeventi.model.Evento;
 import com.calabriaeventi.utils.ActionCommon;
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment;
 
+import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
 /**
@@ -32,7 +33,7 @@ public class EventDetailBottomSheet extends BottomSheetDialogFragment implements
 
     @Nullable
     @Override
-    public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container,
+    public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container,
                              @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_event_detail_bottom_sheet, container, false);
 
@@ -45,7 +46,7 @@ public class EventDetailBottomSheet extends BottomSheetDialogFragment implements
     }
 
     @Override
-    public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
+    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         view.findViewById(R.id.action_add_calendar).setOnClickListener(this);
         view.findViewById(R.id.action_share).setOnClickListener(this);
     }

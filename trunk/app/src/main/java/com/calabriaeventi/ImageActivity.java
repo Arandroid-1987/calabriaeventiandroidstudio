@@ -49,22 +49,20 @@ public class ImageActivity extends AppCompatActivity {
     public boolean onOptionsItemSelected(final MenuItem item) {
         boolean res = false;
         int id = item.getItemId();
-        switch (id) {
-            case android.R.id.home:
-                Intent upIntent = NavUtils.getParentActivityIntent(this);
-                if (upIntent != null && NavUtils.shouldUpRecreateTask(this, upIntent)) {
-                    TaskStackBuilder.create(this)
-                            .addNextIntentWithParentStack(upIntent)
-                            .startActivities();
+        if (id == android.R.id.home) {
+            Intent upIntent = NavUtils.getParentActivityIntent(this);
+            if (upIntent != null && NavUtils.shouldUpRecreateTask(this, upIntent)) {
+                TaskStackBuilder.create(this)
+                        .addNextIntentWithParentStack(upIntent)
+                        .startActivities();
+            } else {
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+                    finishAfterTransition();
                 } else {
-                    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-                        finishAfterTransition();
-                    } else {
-                        finish();
-                    }
+                    finish();
                 }
-                res = true;
-                break;
+            }
+            res = true;
         }
         return res;
     }

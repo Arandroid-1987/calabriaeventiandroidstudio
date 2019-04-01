@@ -149,7 +149,6 @@ public class EventoViewHolder extends RecyclerView.ViewHolder implements View.On
             intent.putExtra(EventDetailActivity.EVENT_EXTRA, evento);
 
             if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.LOLLIPOP) {
-
                 Pair<View, String> pair1 = Pair.create((View) immagine, immagine.getTransitionName());
 
                 ActivityOptionsCompat options = ActivityOptionsCompat.makeSceneTransitionAnimation(context, pair1);

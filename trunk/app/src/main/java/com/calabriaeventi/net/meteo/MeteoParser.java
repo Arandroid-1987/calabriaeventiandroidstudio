@@ -1,5 +1,10 @@
 package com.calabriaeventi.net.meteo;
 
+import org.jsoup.Jsoup;
+import org.jsoup.nodes.Document;
+import org.jsoup.nodes.Element;
+import org.jsoup.select.Elements;
+
 import java.io.InputStream;
 import java.net.URL;
 import java.text.SimpleDateFormat;
@@ -7,14 +12,9 @@ import java.util.Date;
 import java.util.Locale;
 import java.util.StringTokenizer;
 
-import org.jsoup.Jsoup;
-import org.jsoup.nodes.Document;
-import org.jsoup.nodes.Element;
-import org.jsoup.select.Elements;
+class MeteoParser {
 
-public class MeteoParser {
-
-    public String getMeteo(String comune, Date date) {
+    String getMeteo(String comune, Date date) {
         if (comune.toLowerCase(Locale.ITALIAN).equals("calabria")) {
             return "";
         }
@@ -39,8 +39,7 @@ public class MeteoParser {
                     break;
             }
         }
-        SimpleDateFormat sdf = new SimpleDateFormat("EEEE dd MMMM",
-                Locale.ITALIAN);
+        SimpleDateFormat sdf = new SimpleDateFormat("EEEE dd MMMM", Locale.ITALIAN);
         String data = sdf.format(date).toLowerCase(Locale.getDefault());
         url += "citta=" + comune + "&g=8";
         Document doc;
@@ -86,93 +85,57 @@ public class MeteoParser {
 
     private String convertToCool(String src) {
         if (src.endsWith("s1.gif")) { // sole
-            // src =
-            // "http://cdn.worldweatheronline.net/images/weather/small/113_day_sm.png";
             src = "http://www.arandroid.altervista.org/meteo/s1.png";
         }
         if (src.endsWith("s2.gif")) { // sole caldo
-            // src =
-            // "http://cdn.worldweatheronline.net/images/weather/small/113_day_sm.png";
             src = "http://www.arandroid.altervista.org/meteo/s2.png";
         }
         if (src.endsWith("s3.gif")) { // parzialmente nuvoloso
-            // src =
-            // "http://cdn.worldweatheronline.net/images/weather/small/116_day_sm.png";
             src = "http://www.arandroid.altervista.org/meteo/s3.png";
         }
         if (src.endsWith("s4.gif")) { // molto nuvoloso
-            // src =
-            // "http://cdn.worldweatheronline.net/images/weather/small/119_day_sm.png";
             src = "http://www.arandroid.altervista.org/meteo/s4.png";
         }
         if (src.endsWith("s5.gif")) { // variabile con pioggie
-            // src =
-            // "http://cdn.worldweatheronline.net/images/weather/small/176_day_sm.png";
             src = "http://www.arandroid.altervista.org/meteo/s5.png";
         }
         if (src.endsWith("s6.gif")) { // variabile con nevischio
-            // src =
-            // "http://cdn.worldweatheronline.net/images/weather/small/179_day_sm.png";
             src = "http://www.arandroid.altervista.org/meteo/s6.png";
         }
         if (src.endsWith("s7.gif")) { // variabile con neve
-            // src =
-            // "http://cdn.worldweatheronline.net/images/weather/small/179_day_sm.png";
             src = "http://www.arandroid.altervista.org/meteo/s7.png";
         }
         if (src.endsWith("s8.gif")) { // nuvoloso
-            // src =
-            // "http://cdn.worldweatheronline.net/images/weather/small/122_day_sm.png";
             src = "http://www.arandroid.altervista.org/meteo/s8.png";
         }
         if (src.endsWith("s9.gif")) { // pioggia
-            // src =
-            // "http://cdn.worldweatheronline.net/images/weather/small/266_day_sm.png";
             src = "http://www.arandroid.altervista.org/meteo/s9.png";
         }
         if (src.endsWith("s10.gif")) { // pioggia forte
-            // src =
-            // "http://cdn.worldweatheronline.net/images/weather/small/359_day_sm.png";
             src = "http://www.arandroid.altervista.org/meteo/s10.png";
         }
         if (src.endsWith("s11.gif")) { // neve
-            // src =
-            // "http://cdn.worldweatheronline.net/images/weather/small/227_day_sm.png";
             src = "http://www.arandroid.altervista.org/meteo/s11.png";
         }
         if (src.endsWith("s12.gif")) { // acquaneve
-            // src =
-            // "http://cdn.worldweatheronline.net/images/weather/small/317_day_sm.png";
             src = "http://www.arandroid.altervista.org/meteo/s12.png";
         }
         if (src.endsWith("s13.gif")) { // temporale
-            // src =
-            // "http://cdn.worldweatheronline.net/images/weather/small/386_night_sm.png";
             src = "http://www.arandroid.altervista.org/meteo/s13.png";
         }
         if (src.endsWith("s14.gif")) { // nebbia
-            // src =
-            // "http://cdn.worldweatheronline.net/images/weather/small/248_day_sm.png";
             src = "http://www.arandroid.altervista.org/meteo/s14.png";
         }
         if (src.endsWith("s15.gif")) { // nebbia e sole
-            // src =
-            // "http://cdn.worldweatheronline.net/images/weather/small/248_day_sm.png";
             src = "http://www.arandroid.altervista.org/meteo/s15.png";
         }
         if (src.endsWith("s16.gif")) { // temporale e schiarite
-            // src =
-            // "http://cdn.worldweatheronline.net/images/weather/small/176_day_sm.png";
             src = "http://www.arandroid.altervista.org/meteo/s16.png";
         }
         if (src.endsWith("s17.gif")) { // grandine
-            // src =
-            // "http://cdn.worldweatheronline.net/images/weather/small/359_day_sm.png";
             src = "http://www.arandroid.altervista.org/meteo/s17.png";
         }
         if (src.endsWith("s18.gif")) { // neve leggera
-            // src =
-            // "http://cdn.worldweatheronline.net/images/weather/small/227_day_sm.png";
             src = "http://www.arandroid.altervista.org/meteo/s18.png";
         }
         return src;
