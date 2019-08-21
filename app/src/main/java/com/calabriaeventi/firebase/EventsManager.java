@@ -66,12 +66,7 @@ public class EventsManager {
                 }
             }
         }
-        Collections.sort(eventiGiornalieri, new Comparator<Evento>() {
-            @Override
-            public int compare(Evento evento, Evento other) {
-                return - evento.compareTo(other);
-            }
-        });
+        Collections.sort(eventiGiornalieri, (evento, other) -> - evento.compareTo(other));
         return eventiGiornalieri;
     }
 
@@ -92,12 +87,7 @@ public class EventsManager {
                 }
             }
         }
-        Collections.sort(eventiDomani, new Comparator<Evento>() {
-            @Override
-            public int compare(Evento evento, Evento other) {
-                return - evento.compareTo(other);
-            }
-        });
+        Collections.sort(eventiDomani, (evento, other) -> - evento.compareTo(other));
         return eventiDomani;
     }
 }
