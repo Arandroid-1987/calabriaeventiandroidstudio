@@ -2,12 +2,6 @@ package com.calabriaeventi;
 
 import android.app.Activity;
 import android.os.Bundle;
-import androidx.annotation.NonNull;
-import androidx.fragment.app.Fragment;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
-import androidx.appcompat.widget.SearchView;
-import androidx.appcompat.widget.SearchView.OnQueryTextListener;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -15,8 +9,14 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 
+import androidx.annotation.NonNull;
+import androidx.appcompat.widget.SearchView;
+import androidx.appcompat.widget.SearchView.OnQueryTextListener;
+import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
+
 import com.calabriaeventi.firebase.EventsManager;
-import com.calabriaeventi.io.AsyncCallback;
 import com.calabriaeventi.io.SharedPreferencesManager;
 import com.calabriaeventi.io.TimedObject;
 import com.calabriaeventi.model.Evento;
@@ -82,22 +82,19 @@ public class EventiFragment extends Fragment {
             recyclerView.setAdapter(adp);
 
             if (!Constants.TODAY.equals(object.getDate())) {
-                EventsManager.getInstance().loadEvents(provincia.getFirebaseName(), new AsyncCallback<ArrayList<Evento>>() {
-                    @Override
-                    public void callback(ArrayList<Evento> ris) {
-                        events.clear();
-                        if (provincia.getNome().equals("Home")) {
-                            events.addAll(EventsManager.getEventiGiornalieri(ris));
-                        } else if (provincia.getNome().equals("Domani")) {
-                            events.addAll(EventsManager.getEventiDomani(ris));
-                        } else {
-                            events.addAll(ris);
-                            preferencesManager.storeEventi(provincia.getCacheKey(), events);
-                        }
-                        adp.applyFilter("");
-                        adp.notifyDataSetChanged();
-                        progressBar.setVisibility(View.GONE);
+                EventsManager.getInstance().loadEvents(provincia.getFirebaseName(), ris -> {
+                    events.clear();
+                    if (provincia.getNome().equals("Home")) {
+                        events.addAll(EventsManager.getEventiGiornalieri(ris));
+                    } else if (provincia.getNome().equals("Domani")) {
+                        events.addAll(EventsManager.getEventiDomani(ris));
+                    } else {
+                        events.addAll(ris);
+                        preferencesManager.storeEventi(provincia.getCacheKey(), events);
                     }
+                    adp.applyFilter("");
+                    adp.notifyDataSetChanged();
+                    progressBar.setVisibility(View.GONE);
                 });
             } else {
                 if (provincia.getNome().equals("Home")) {
@@ -126,28 +123,22 @@ public class EventiFragment extends Fragment {
         inflater.inflate(R.menu.activity_tab, menu);
         MenuItem searchItem = menu.findItem(R.id.action_search);
         final SearchView searchView = (SearchView) searchItem.getActionView();
-        searchView.setOnSearchClickListener(new View.OnClickListener() {
+        searchView.setOnSearchClickListener(v -> searchView.setOnQueryTextListener(new OnQueryTextListener() {
 
             @Override
-            public void onClick(View v) {
-                searchView.setOnQueryTextListener(new OnQueryTextListener() {
-
-                    @Override
-                    public boolean onQueryTextSubmit(String query) {
-                        filterEvents(query);
-                        return true;
-                    }
-
-                    @Override
-                    public boolean onQueryTextChange(String query) {
-                        if (query.trim().length() == 0) {
-                            filterEvents(query);
-                        }
-                        return false;
-                    }
-                });
+            public boolean onQueryTextSubmit(String query) {
+                filterEvents(query);
+                return true;
             }
-        });
+
+            @Override
+            public boolean onQueryTextChange(String query) {
+                if (query.trim().length() == 0) {
+                    filterEvents(query);
+                }
+                return false;
+            }
+        }));
     }
 
     private void filterEvents(String query) {

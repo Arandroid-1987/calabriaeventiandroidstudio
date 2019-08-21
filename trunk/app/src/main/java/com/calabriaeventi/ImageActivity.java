@@ -3,14 +3,15 @@ package com.calabriaeventi;
 import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Build;
-import androidx.core.app.NavUtils;
-import androidx.core.app.TaskStackBuilder;
-import androidx.appcompat.app.ActionBar;
-import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
-import androidx.appcompat.widget.Toolbar;
 import android.view.MenuItem;
 import android.widget.ImageView;
+
+import androidx.appcompat.app.ActionBar;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
+import androidx.core.app.NavUtils;
+import androidx.core.app.TaskStackBuilder;
 
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.calabriaeventi.glide.GlideApp;
@@ -34,14 +35,18 @@ public class ImageActivity extends AppCompatActivity {
 
         if (actionBar != null) {
             actionBar.setDisplayHomeAsUpEnabled(true);
-            actionBar.setTitle(evento.getTitle());
+            if (evento != null) {
+                actionBar.setTitle(evento.getTitle());
+            }
         }
 
         ImageView eventImg = findViewById(R.id.image);
 
-        GlideApp.with(this).load(evento.getImgUrl()).placeholder(R.drawable.immm)
-                .diskCacheStrategy(DiskCacheStrategy.ALL)
-                .dontTransform().into(eventImg);
+        if (evento != null) {
+            GlideApp.with(this).load(evento.getImgUrl()).placeholder(R.drawable.immm)
+                    .diskCacheStrategy(DiskCacheStrategy.ALL)
+                    .dontTransform().into(eventImg);
+        }
     }
 
     @SuppressLint("RestrictedApi")

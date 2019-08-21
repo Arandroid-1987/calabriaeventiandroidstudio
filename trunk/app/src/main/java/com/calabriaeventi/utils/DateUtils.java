@@ -26,7 +26,7 @@ public class DateUtils {
             }
             evento.setDate(date);
         } catch (Exception ex) {
-            evento.setDate(new ArrayList<Date>());
+            evento.setDate(new ArrayList<>());
         }
     }
 
@@ -36,13 +36,15 @@ public class DateUtils {
         Date first = sdf.parse(firstDate);
         Date last = sdf.parse(lastDate);
         Calendar cal = Calendar.getInstance();
-        cal.setTime(first);
-        while (first.before(last)) {
-            date.add(first);
-            cal.add(Calendar.DAY_OF_YEAR, 1);
-            first = cal.getTime();
+        if (first != null) {
+            cal.setTime(first);
+            while (first.before(last)) {
+                date.add(first);
+                cal.add(Calendar.DAY_OF_YEAR, 1);
+                first = cal.getTime();
+            }
+            date.add(last);
         }
-        date.add(last);
         return date;
     }
 

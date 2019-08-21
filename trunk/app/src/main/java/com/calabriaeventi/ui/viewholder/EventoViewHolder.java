@@ -105,12 +105,7 @@ public class EventoViewHolder extends RecyclerView.ViewHolder implements View.On
             }
 
             this.meteo.setImageDrawable(null);
-            String meteo = evento.getMeteo(new AsyncCallback<String>() {
-                @Override
-                public void callback(String s) {
-                    initMeteo(context, s);
-                }
-            });
+            String meteo = evento.getMeteo(s -> initMeteo(context, s));
 
             initMeteo(context, meteo);
 
@@ -127,16 +122,13 @@ public class EventoViewHolder extends RecyclerView.ViewHolder implements View.On
     }
 
     private void initMeteo(final Activity context, final String meteo) {
-        context.runOnUiThread(new Runnable() {
-            @Override
-            public void run() {
-                if (meteo == null || meteo.isEmpty()) {
-                    EventoViewHolder.this.meteo.setVisibility(View.GONE);
-                } else {
-                    EventoViewHolder.this.meteo.setVisibility(View.VISIBLE);
-                    GlideApp.with(context).load(meteo).diskCacheStrategy(DiskCacheStrategy.ALL)
-                            .into(EventoViewHolder.this.meteo);
-                }
+        context.runOnUiThread(() -> {
+            if (meteo == null || meteo.isEmpty()) {
+                EventoViewHolder.this.meteo.setVisibility(View.GONE);
+            } else {
+                EventoViewHolder.this.meteo.setVisibility(View.VISIBLE);
+                GlideApp.with(context).load(meteo).diskCacheStrategy(DiskCacheStrategy.ALL)
+                        .into(EventoViewHolder.this.meteo);
             }
         });
     }

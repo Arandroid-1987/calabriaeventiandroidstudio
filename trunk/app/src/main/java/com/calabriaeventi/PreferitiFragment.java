@@ -82,28 +82,22 @@ public class PreferitiFragment extends Fragment implements Observer {
         inflater.inflate(R.menu.activity_tab, menu);
         MenuItem searchItem = menu.findItem(R.id.action_search);
         final SearchView searchView = (SearchView) searchItem.getActionView();
-        searchView.setOnSearchClickListener(new View.OnClickListener() {
+        searchView.setOnSearchClickListener(v -> searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
 
             @Override
-            public void onClick(View v) {
-                searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
-
-                    @Override
-                    public boolean onQueryTextSubmit(String query) {
-                        filterEvents(query);
-                        return true;
-                    }
-
-                    @Override
-                    public boolean onQueryTextChange(String query) {
-                        if (query.trim().length() == 0) {
-                            filterEvents(query);
-                        }
-                        return false;
-                    }
-                });
+            public boolean onQueryTextSubmit(String query) {
+                filterEvents(query);
+                return true;
             }
-        });
+
+            @Override
+            public boolean onQueryTextChange(String query) {
+                if (query.trim().length() == 0) {
+                    filterEvents(query);
+                }
+                return false;
+            }
+        }));
     }
 
     private void filterEvents(String query) {
