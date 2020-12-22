@@ -23,6 +23,11 @@ import com.calabriaeventi.model.Evento;
 import com.calabriaeventi.model.Provincia;
 import com.calabriaeventi.ui.EventoAdapter;
 import com.calabriaeventi.utils.Constants;
+import com.google.android.gms.ads.AdRequest;
+import com.google.android.gms.ads.AdView;
+import com.google.android.gms.ads.MobileAds;
+import com.google.android.gms.ads.initialization.InitializationStatus;
+import com.google.android.gms.ads.initialization.OnInitializationCompleteListener;
 
 import java.util.ArrayList;
 import java.util.Locale;
@@ -34,6 +39,8 @@ public class EventiFragment extends Fragment {
     private SharedPreferencesManager preferencesManager;
 
     public final static String PROVINCIA = "Provincia";
+
+    private AdView mAdView;
 
     public EventiFragment() {
         provincia = null;
@@ -62,6 +69,10 @@ public class EventiFragment extends Fragment {
 
         Activity activity = getActivity();
         if (activity != null) {
+
+            mAdView = rootView.findViewById(R.id.adView);
+            AdRequest adRequest = new AdRequest.Builder().build();
+            mAdView.loadAd(adRequest);
 
             RecyclerView recyclerView = rootView.findViewById(R.id.eventsListView);
             final LinearLayoutManager mLayoutManager = new LinearLayoutManager(getContext()) {
@@ -113,6 +124,10 @@ public class EventiFragment extends Fragment {
                 progressBar.setVisibility(View.GONE);
             }
         }
+
+
+
+
 
         return rootView;
 

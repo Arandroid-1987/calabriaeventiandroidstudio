@@ -38,6 +38,9 @@
                 app:layout_collapseMode="pin"
                 app:popupTheme="@style/AppTheme.PopupOverlay" />
 
+
+
+
         </com.google.android.material.appbar.CollapsingToolbarLayout>
     </com.google.android.material.appbar.AppBarLayout>
 
@@ -52,5 +55,19 @@
         app:layout_anchorGravity="bottom|center"
         app:fabSize="normal"
         app:srcCompat="@drawable/baseline_favorite_border_white_48" />
+
+    <com.google.android.gms.ads.AdView
+        xmlns:ads="http://schemas.android.com/apk/res-auto"
+        android:id="@+id/adView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_alignParentBottom="true"
+        ads:adSize="BANNER"
+        ads:adUnitId="ca-app-pub-2997805148414323/9432860494"
+        android:layout_gravity="bottom|center">
+    </com.google.android.gms.ads.AdView>
+
+
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

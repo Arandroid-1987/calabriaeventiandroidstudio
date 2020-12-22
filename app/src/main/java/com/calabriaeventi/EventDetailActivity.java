@@ -18,6 +18,8 @@ import com.calabriaeventi.glide.GlideApp;
 import com.calabriaeventi.io.SharedPreferencesManager;
 import com.calabriaeventi.model.Evento;
 import com.calabriaeventi.utils.ActionCommon;
+import com.google.android.gms.ads.AdRequest;
+import com.google.android.gms.ads.AdView;
 import com.google.android.material.appbar.AppBarLayout;
 import com.google.android.material.appbar.CollapsingToolbarLayout;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
@@ -38,6 +40,8 @@ public class EventDetailActivity extends AppCompatActivity implements View.OnCli
     private ImageView eventImg;
     private CollapsingToolbarLayout toolbarLayout;
 
+    private AdView mAdView;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -54,6 +58,10 @@ public class EventDetailActivity extends AppCompatActivity implements View.OnCli
             actionBar.setDisplayHomeAsUpEnabled(true);
             actionBar.setTitle(evento.getTitle());
         }
+
+        mAdView = findViewById(R.id.adView);
+        AdRequest adRequest = new AdRequest.Builder().build();
+        mAdView.loadAd(adRequest);
 
         toolbarLayout = findViewById(R.id.toolbar_layout);
         AppBarLayout appBarLayout = findViewById(R.id.app_bar);
